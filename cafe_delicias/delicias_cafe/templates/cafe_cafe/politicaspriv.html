@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidad | Café Delicias</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root { --brown:#6b4f4f; --light:#f9f6f5; }
+    body { background: var(--light); }
+    .title { color: var(--brown); }
+    .card { border: 0; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+    .anchor { scroll-margin-top: 100px; }
+    .toc a { text-decoration: none; }
+    code { background:#fff4e6; padding:.15rem .4rem; border-radius:.35rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'index' %}">Café Delicias</a>
+      <a class="btn btn-outline-light ms-auto" href="{% url 'index' %}">Volver al inicio</a>
+    </div>
+  </nav>
+
+  <header class="py-5 text-center">
+    <div class="container">
+      <h1 class="display-5 fw-bold title">Política de Privacidad</h1>
+      <p class="text-muted mb-0">Vigente desde: <strong>{{ FECHA_VIGENCIA|default:"03-09-2025" }}</strong></p>
+      <p class="text-muted">Última actualización: <strong>{{ FECHA_ACTUALIZACION|default:"03-09-2025" }}</strong></p>
+    </div>
+  </header>
+
+  <main class="container pb-5">
+    <div class="row g-4">
+      <aside class="col-lg-4">
+        <div class="card p-3 sticky-top" style="top: 90px;">
+          <h6 class="mb-3">Contenido</h6>
+          <nav class="toc small">
+            <ol class="mb-0">
+              <li><a href="#responsable">Responsable del tratamiento</a></li>
+              <li><a href="#datos">Datos que recopilamos</a></li>
+              <li><a href="#finalidades">Finalidades del tratamiento</a></li>
+              <li><a href="#base-legal">Base legal y consentimiento</a></li>
+              <li><a href="#cookies">Cookies y tecnologías similares</a></li>
+              <li><a href="#terceros">Proveedores y transferencias</a></li>
+              <li><a href="#retencion">Plazos de conservación</a></li>
+              <li><a href="#derechos">Derechos de las personas</a></li>
+              <li><a href="#seguridad">Seguridad de la información</a></li>
+              <li><a href="#menores">Menores de edad</a></li>
+              <li><a href="#cambios">Cambios a esta política</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ol>
+          </nav>
+        </div>
+      </aside>
+
+      <section class="col-lg-8">
+        <div class="card p-4">
+          <p class="mb-4">
+            En <strong>Café Delicias</strong> respetamos tu privacidad. Esta Política explica
+            cómo recopilamos, usamos, compartimos y protegemos tus datos personales cuando
+            visitas nuestro sitio web <code>{{ DOMINIO|default:"https://tudominio.cl" }}</code>,
+            te registras, realizas un pedido o te comunicas con nosotros. Nos alineamos con
+            la normativa chilena vigente sobre protección de datos personales y buenas
+            prácticas del comercio electrónico.
+          </p>
+
+          <h3 id="responsable" class="anchor mt-4">1) Responsable del tratamiento</h3>
+          <p>
+            <strong>Razón social:</strong> {{ RAZON_SOCIAL|default:"Café Delicias SpA" }}<br/>
+            <strong>RUT:</strong> {{ RUT|default:"00.000.000-0" }}<br/>
+            <strong>Domicilio:</strong> {{ DIRECCION|default:"Av. Ejemplo 123, Santiago, Chile" }}<br/>
+            <strong>Email de contacto:</strong> <a href="mailto:{{ EMAIL_PRIV|default:'privacidad@tudominio.cl' }}">{{ EMAIL_PRIV|default:"privacidad@tudominio.cl" }}</a>
+          </p>
+
+          <h3 id="datos" class="anchor mt-4">2) Datos que recopilamos</h3>
+          <ul>
+            <li><strong>Identificación y contacto</strong>: nombre, apellido, RUT (si corresponde), email, teléfono, dirección de envío/facturación.</li>
+            <li><strong>Transaccionales</strong>: productos comprados, monto, fecha y medio de pago (los datos sensibles de tarjeta se procesan en la pasarela y no se almacenan en nuestros servidores).</li>
+            <li><strong>Cuenta</strong>: credenciales cifradas, historial de pedidos, preferencias.</li>
+            <li><strong>Navegación</strong>: dirección IP, tipo de navegador, zona horaria, páginas visitadas, cookies y tecnologías similares.</li>
+            <li><strong>Comunicación</strong>: mensajes, comentarios, encuestas, soporte.</li>
+          </ul>
+
+          <h3 id="finalidades" class="anchor mt-4">3) Finalidades del tratamiento</h3>
+          <ul>
+            <li>Procesar pedidos, pagos y gestionar envíos.</li>
+            <li>Crear y administrar tu cuenta y autenticación.</li>
+            <li>Atender consultas y soporte al cliente.</li>
+            <li>Mejorar nuestro sitio, productos y experiencia de compra (analítica).</li>
+            <li>Enviar comunicaciones comerciales sobre ofertas y novedades, cuando lo hayas autorizado (puedes darte de baja en cualquier momento).</li>
+            <li>Prevenir fraude, cumplir obligaciones legales y responder a requerimientos de autoridades competentes.</li>
+          </ul>
+
+          <h3 id="base-legal" class="anchor mt-4">4) Base legal y consentimiento</h3>
+          <p>
+            Tratamos tu información para ejecutar la relación contractual (por ejemplo, al comprar),
+            cumplir obligaciones legales y, cuando proceda, con tu consentimiento expreso (por ejemplo,
+            para envíos de marketing). Puedes retirar tu consentimiento en cualquier momento sin
+            efecto retroactivo.
+          </p>
+
+          <h3 id="cookies" class="anchor mt-4">5) Cookies y tecnologías similares</h3>
+          <p>
+            Usamos cookies propias y de terceros para funcionalidades del sitio, recordar tu sesión,
+            analizar el tráfico y, eventualmente, marketing. Puedes configurar o rechazar cookies
+            no esenciales desde el banner o la configuración de tu navegador. Consulta nuestra
+            <a href="{% url 'politicacookies' %}">Política de Cookies</a> para más detalle.
+          </p>
+
+          <h3 id="terceros" class="anchor mt-4">6) Proveedores y transferencias</h3>
+          <p>
+            Compartimos datos con proveedores que nos prestan servicios (p. ej., pasarelas de pago,
+            logística, hosting, analítica). Estos actúan como encargados del tratamiento y sólo
+            acceden a la información necesaria para su labor, bajo obligaciones de confidencialidad
+            y seguridad. Si un proveedor se encuentra en otro país, podrían producirse
+            <strong>transferencias internacionales</strong> de datos conforme a las exigencias
+            legales aplicables.
+          </p>
+          <ul>
+            <li><strong>Pago:</strong> {{ PASARELA|default:"(e.g., WebPay/PayPal/Mercado Pago)" }} – procesa de forma segura los datos de la tarjeta. Nosotros no almacenamos números de tarjeta.</li>
+            <li><strong>Hosting:</strong> {{ HOSTING|default:"Proveedor Cloud" }} – alojamiento del sitio y base de datos.</li>
+            <li><strong>Analítica:</strong> {{ ANALITICA|default:"(e.g., Google Analytics)" }} – estadísticas de navegación.</li>
+            <li><strong>Envíos:</strong> {{ LOGISTICA|default:"Courier local" }} – despacho de pedidos.</li>
+          </ul>
+
+          <h3 id="retencion" class="anchor mt-4">7) Plazos de conservación</h3>
+          <p>
+            Conservamos tus datos durante el tiempo necesario para cumplir las finalidades indicadas,
+            y los plazos que exija la normativa (por ejemplo, tributaria). Luego se eliminarán o
+            anonimizarán de forma segura.
+          </p>
+
+          <h3 id="derechos" class="anchor mt-4">8) Tus derechos</h3>
+          <p>
+            Puedes ejercer tus derechos de <strong>acceso, rectificación, cancelación/eliminación y
+            oposición</strong> (ARCO), además de la portabilidad y limitación del tratamiento cuando
+            proceda. También puedes oponerte al marketing directo en cualquier momento.
+          </p>
+          <p>
+            Para ejercerlos, escríbenos a
+            <a href="mailto:{{ EMAIL_PRIV|default:'privacidad@tudominio.cl' }}">{{ EMAIL_PRIV|default:"privacidad@tudominio.cl" }}</a>
+            indicando tu solicitud y acreditando tu identidad.
+          </p>
+
+          <h3 id="seguridad" class="anchor mt-4">9) Seguridad de la información</h3>
+          <p>
+            Implementamos medidas técnicas y organizativas razonables para proteger tus datos (por
+            ejemplo, <strong>cifrado SSL/TLS</strong> en la transmisión, controles de acceso, copias
+            de seguridad). Aun así, ningún sistema es 100% infalible.
+          </p>
+
+          <h3 id="menores" class="anchor mt-4">10) Menores de edad</h3>
+          <p>
+            Nuestros servicios no están dirigidos a menores de 14 años. Si detectamos que hemos
+            recopilado datos de un menor sin autorización, los eliminaremos.
+          </p>
+
+          <h3 id="cambios" class="anchor mt-4">11) Cambios a esta política</h3>
+          <p>
+            Podemos actualizar esta Política para reflejar cambios legales, operativos o del servicio.
+            Publicaremos la versión vigente con su fecha de actualización.
+          </p>
+
+          <h3 id="contacto" class="anchor mt-4">12) Contacto</h3>
+          <p class="mb-0">
+            Si tienes preguntas o deseas ejercer tus derechos, contáctanos en:
+            <a href="mailto:{{ EMAIL_PRIV|default:'privacidad@tudominio.cl' }}">{{ EMAIL_PRIV|default:"privacidad@tudominio.cl" }}</a>.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="py-4 bg-dark">
+    <div class="container text-center text-white-50 small">
+      © {{ YEAR|default:"2025" }} Café Delicias — <a class="text-decoration-none text-white" href="{% url 'index' %}">Inicio</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

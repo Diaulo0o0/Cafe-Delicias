@@ -1,0 +1,159 @@
+/* ──────────────────────────────────────────────────────────────
+   Bárbaro UI — Login CSS
+   - Glassmorphism + animación de gradiente
+   - Accesible, responsive y con detalles finos
+   ───────────────────────────────────────────────────────────── */
+
+:root{
+  --bg-1: 255 99 132;   /* rosa */
+  --bg-2: 54 162 235;   /* celeste */
+  --bg-3: 88 199 142;   /* verde */
+  --bg-4: 153 102 255;  /* violeta */
+
+  --card: 255 255 255;  /* blanco */
+  --text: 20 24 36;     /* casi negro */
+  --muted: 100 116 139; /* slate-500 */
+  --ring: 99 102 241;   /* indigo-500 */
+  --ok: 16 185 129;     /* emerald-500 */
+  --danger: 239 68 68;  /* red-500 */
+}
+
+/* Reset elegante */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: rgb(var(--text));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fondo animado */
+.bg{
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(60vmax 60vmax at 10% 20%, rgba(var(--bg-1),.35), transparent 60%),
+    radial-gradient(50vmax 50vmax at 90% 10%, rgba(var(--bg-2),.35), transparent 60%),
+    radial-gradient(45vmax 45vmax at 0% 100%, rgba(var(--bg-3),.35), transparent 60%),
+    radial-gradient(40vmax 40vmax at 100% 100%, rgba(var(--bg-4),.35), transparent 60%),
+    linear-gradient(180deg, #0b1020 0%, #0e1126 100%);
+  filter: saturate(115%);
+  animation: float 20s ease-in-out infinite;
+}
+@keyframes float{
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-1.5%) scale(1.01); }
+}
+
+.container{
+  min-height: 100svh; display: grid; place-items: center; padding: clamp(16px, 3vw, 32px);
+}
+
+.card{
+  width: min(440px, 92vw);
+  background: rgba(var(--card), .08);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.15);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-radius: 24px;
+  padding: clamp(20px, 4vw, 34px);
+  overflow: hidden;
+}
+
+.header{ text-align: center; }
+.logo{ font-size: 40px; line-height: 1; margin-bottom: 8px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.35)); }
+.header h1{ margin: 0 0 2px; font-size: clamp(22px, 3.2vw, 28px); font-weight: 800; letter-spacing: 0.2px; }
+.sub{ margin: 0; color: rgb(var(--muted)); font-size: 14px; }
+
+.form{ margin-top: 22px; display: grid; gap: 16px; }
+
+.field{ position: relative; display: grid; gap: 6px; }
+.field input{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.5);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 14px 14px 14px 14px;
+  font-size: 15px;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease, background .2s ease, transform .08s ease;
+}
+.field input::placeholder{ color: transparent; }
+.field label{
+  position: absolute; left: 14px; top: 13px;
+  color: rgba(0,0,0,.55); font-size: 14px; pointer-events: none; transition: transform .18s ease, color .18s ease, font-size .18s ease, top .18s ease;
+}
+/* Floating label */
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label{
+  top: 6px; transform: translateY(-55%);
+  font-size: 12px; color: rgb(var(--ring));
+}
+
+/* Focus ring accesible */
+.field input:focus{
+  border-color: rgba(var(--ring), .9);
+  box-shadow: 0 0 0 4px rgba(var(--ring), .20), 0 8px 24px rgba(0,0,0,.20);
+  background: rgba(255,255,255,.75);
+}
+
+/* Feedback nativo */
+.field input:user-invalid{ border-color: rgba(var(--danger), .9); }
+.field input:user-valid{ border-color: rgba(var(--ok), .9); }
+.hint{ color: rgb(var(--muted)); font-size: 12px; }
+
+.row{ display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 6px 0 4px; }
+.check{ display: inline-flex; align-items: center; gap: 8px; user-select: none; color: rgba(0,0,0,.75); }
+.check input{ width: 16px; height: 16px; accent-color: rgb(var(--ring)); }
+
+.btn{
+  appearance: none; border: 0; border-radius: 14px; padding: 14px 16px; font-weight: 700; font-size: 15px; cursor: pointer;
+  transition: transform .06s ease, box-shadow .2s ease, filter .2s ease; will-change: transform;
+}
+.btn:active{ transform: translateY(1px) scale(.997); }
+
+.primary{
+  background: linear-gradient(135deg, rgba(99,102,241,1) 0%, rgba(168,85,247,1) 50%, rgba(236,72,153,1) 100%);
+  color: white; box-shadow: 0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.22);
+}
+.primary:hover{ filter: brightness(1.03); box-shadow: 0 10px 28px rgba(0,0,0,.32), inset 0 0 0 1px rgba(255,255,255,.28); }
+
+.outline{
+  background: transparent; color: white; border: 1px solid rgba(255,255,255,.55);
+}
+.outline:hover{ background: rgba(255,255,255,.08); }
+
+.divider{
+  height: 1px; margin: 10px 0; background: linear-gradient(to right, transparent, rgba(255,255,255,.35), transparent);
+}
+
+.link{ color: white; text-decoration: none; opacity: .9; transition: opacity .2s ease, text-underline-offset .2s ease; }
+.link:hover{ text-decoration: underline; text-underline-offset: 3px; opacity: 1; }
+
+.foot{ margin-top: 10px; text-align: center; }
+.foot p{ margin: 0; color: rgba(255,255,255,.85); font-size: 12.5px; }
+
+/* Soporte reducido de movimiento */
+@media (prefers-reduced-motion: reduce){
+  .bg{ animation: none; }
+  .btn, .field input, .field label{ transition: none; }
+}
+
+/* Modo alto contraste (cuando el usuario lo prefiera) */
+@media (prefers-contrast: more){
+  .card{ border-color: #fff; }
+  .field input{ border-color: #fff; background: #fff; }
+  .link{ text-decoration: underline; }
+}
+
+header .volver {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    background: #000000;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}

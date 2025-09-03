@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Cookies | Delicias Café</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6f4f1f;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #6f4f1f;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Café Delicias</a>
+            <a class="btn btn-outline-light ms-auto" href="{% url 'index' %}">Volver al inicio</a>
+            </div>
+        </nav>
+
+
+    <main>
+        <section class="contenido">
+            <h2>¿Qué son las cookies?</h2>
+            <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas nuestro sitio web. Nos permiten mejorar tu experiencia al recordar tus preferencias y analizar el tráfico del sitio.</p>
+
+            <h2>Tipos de cookies que utilizamos</h2>
+            <ul>
+                <li><strong>Cookies necesarias:</strong> Son esenciales para el funcionamiento básico del sitio, como la navegación y el acceso a áreas seguras.</li>
+                <li><strong>Cookies de rendimiento:</strong> Nos ayudan a analizar cómo interactúan los usuarios con el sitio, permitiéndonos mejorar su rendimiento.</li>
+                <li><strong>Cookies de funcionalidad:</strong> Permiten recordar tus preferencias y personalizar tu experiencia en el sitio.</li>
+                <li><strong>Cookies de publicidad:</strong> Se utilizan para mostrar anuncios relevantes según tus intereses.</li>
+            </ul>
+
+            <h2>¿Cómo puedes controlar las cookies?</h2>
+            <p>Puedes configurar tu navegador para aceptar o rechazar cookies según tus preferencias. Ten en cuenta que bloquear ciertas cookies puede afectar la funcionalidad del sitio.</p>
+
+            <h2>Contacto</h2>
+            <p>Si tienes alguna pregunta sobre nuestra Política de Cookies, no dudes en contactarnos:</p>
+            <p>Email: <a href="mailto:contacto@deliciacafe.cl">contacto@deliciacafe.cl</a></p>
+            <p>Teléfono: +56 2 1234 5678</p>
+        </section>
+    </main>
+    <footer class="py-4 bg-dark">
+        <div class="container text-center text-white-50 small">
+            © {{ YEAR|default:"2025" }} Café Delicias — <a class="text-decoration-none text-white" href="{% url 'index' %}">Inicio</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

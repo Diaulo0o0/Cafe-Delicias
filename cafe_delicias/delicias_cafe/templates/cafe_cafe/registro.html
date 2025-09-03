@@ -1,0 +1,48 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrarse — Café Delicias</title>
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+  <div class="bg"></div>
+  <header>
+      <a href="{% url 'index'%}" class="volver">← Volver</a>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h1>Crear Cuenta</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="field">
+            <input type="text" name="username" placeholder=" " required>
+            <label>Usuario</label>
+        </div>
+        <div class="field">
+            <input type="email" name="email" placeholder=" ">
+            <label>Email</label>
+        </div>
+        <div class="field">
+            <input type="password" name="password1" placeholder=" " required>
+            <label>Contraseña</label>
+        </div>
+        <div class="field">
+            <input type="password" name="password2" placeholder=" " required>
+            <label>Confirmar Contraseña</label>
+        </div>
+        {% if messages %}
+            <ul>
+            {% for m in messages %}
+                <li style="color:red;">{{ m }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <button class="btn primary" type="submit">Registrarse</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

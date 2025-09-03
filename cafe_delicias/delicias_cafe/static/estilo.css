@@ -1,0 +1,253 @@
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f3ef;
+    color: #4b3832;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #6f4e37; 
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f8ede3;
+}
+
+.nav-link {
+    color: #f8ede3;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: #d7ccc8;
+}
+
+/* Botón Buscar */
+.btn-outline-success {
+    border-color: #a1887f;
+    color: #a1887f;
+}
+
+.btn-outline-success:hover {
+    background-color: #a1887f;
+    color: white;
+}
+
+/* Carrusel */
+.carousel-inner img {
+    height: 500px;
+    object-fit: cover;
+}
+
+/* Título principal */
+h1 {
+    color: #3e2723;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Tarjetas de productos */
+.card {
+    background-color: #fff8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100% !important; 
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    height: 220px; 
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.card-title {
+    color: #4e342e;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.card-text {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6d4c41;
+    flex-grow: 1; 
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    background-color: #6f4e37;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    width: 80%; 
+}
+
+.btn-primary:hover {
+    background-color: #8d6e63;
+}
+
+/* Footer */
+.footer{
+    background-color: #6f4e37;
+    padding: 40px 0;   
+}
+
+.footer-row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-links{
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-links ul{
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links h4{
+    color: aliceblue;
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid #00C3FF;
+    display: inline-block;
+    padding-bottom: 5px;
+    text-align: left;
+}
+
+.footer-links ul li a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #bbbbbb;
+    display: block;
+    margin-bottom: 10px;
+    transition: all .3s ease;
+    text-align: left;
+}
+
+.footer-links ul li a:hover{
+    color: aliceblue;
+    padding-left: 6px;
+}
+
+.social-links a{
+    display: inline-block;
+    min-height: 30px;
+    width: 30px;
+    background-color: rgba(255,255,255, 0.2);
+    margin: 0 5px 5px 0;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    color: #FFFFFF;
+    transition: all .5s ease;
+}
+
+.social-links a:hover{
+    background-color: #00C3FF;
+}
+
+@media(max-width:991px) {
+    .footer-row{
+        text-align: center;
+    }
+
+    .footer-links{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+
+/* Estilos para Inicio sesion */
+main.container {
+    background: #fff8f0; 
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 800px;
+    margin: 40px auto;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Título */
+main.container h1 {
+    color: #6f4e37; /* café oscuro */
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Texto */
+main.container p {
+    color: #4e342e;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main.container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    main.container h1 {
+        font-size: 1.6rem;
+    }
+
+    main.container p {
+        font-size: 1rem;
+    }
+}
+
+.messages {
+  margin: 10px 0;
+}
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+}
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-error, .alert-danger {
+  background-color: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb !important;
+  font-weight: bold;
+}
+
+
