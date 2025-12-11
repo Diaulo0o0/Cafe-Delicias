@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago Seguro - Café Delicias</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        body { background-color: #f7f3ef; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .payment-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; max-width: 500px; width: 100%; }
+        .card-header { background: #6f4e37; color: white; padding: 20px; text-align: center; }
+        .form-control:focus { border-color: #6f4e37; box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25); }
+        .btn-pay { background-color: #28a745; color: white; font-weight: bold; transition: 0.3s; }
+        .btn-pay:hover { background-color: #218838; }
+        
+        /* Animación de carga */
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 999; display: none; flex-direction: column; align-items: center; justify-content: center; }
+        .spinner { width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #6f4e37; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div class="payment-card">
+    <div class="card-header">
+        <h4 class="m-0"><i class="fas fa-lock me-2"></i>Pago Seguro</h4>
+        <small>Total a pagar: ${{ total }}</small>
+    </div>
+    <div class="p-4">
+        <form id="paymentForm" action="{% url 'finalizar_compra' %}" method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label text-muted small">Nombre en la tarjeta</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" placeholder="Ej: Juan Pérez" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label text-muted small">Número de tarjeta</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                    <input type="text" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 mb-3">
+                    <label class="form-label text-muted small">Vencimiento</label>
+                    <input type="text" class="form-control" placeholder="MM/AA" maxlength="5" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label text-muted small">CVV</label>
+                    <input type="password" class="form-control" placeholder="123" maxlength="3" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-pay w-100 py-2 mt-3">
+                Pagar ${{ total }} <i class="fas fa-check ms-2"></i>
+            </button>
+            
+            <div class="text-center mt-3">
+                <a href="{% url 'carrito' %}" class="text-muted text-decoration-none small">Volver al carrito</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="overlay" id="loadingScreen">
+    <div class="spinner mb-3"></div>
+    <h4 class="text-dark">Procesando pago...</h4>
+    <p class="text-muted small">Por favor no cierres la ventana</p>
+</div>
+
+<script>
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 1. Detenemos el envío real del formulario
+        
+        // 2. Mostramos la pantalla de carga
+        document.getElementById('loadingScreen').style.display = 'flex';
+
+        // 3. Esperamos 3 segundos (3000ms) simulando conexión con el banco
+        setTimeout(() => {
+            // 4. Ahora sí enviamos el formulario al servidor para crear la boleta
+            e.target.submit();
+        }, 3000);
+    });
+</script>
+
+</body>
+</html>

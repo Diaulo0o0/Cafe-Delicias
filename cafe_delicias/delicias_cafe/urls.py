@@ -34,7 +34,11 @@ urlpatterns = [
     path('carrito/agregar/<int:producto_id>/', views.agregar_al_carrito, name='agregar_al_carrito'), # Agrega un producto al carrito según su ID.
     path('carrito/eliminar/<int:producto_id>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),# Elimina un producto del carrito según su ID.
     path('registro/', views.registro_view, name='registro'), # Página para que un usuario se registre.
-    path('finalizar-compra/', views.finalizar_compra, name='finalizar_compra'), # Finaliza la compra: descuenta stock y muestra mensaje de éxito
+    path('finalizar_compra/', views.finalizar_compra, name='finalizar_compra'), # Finaliza la compra: descuenta stock y muestra mensaje de éxito
+    path('boleta/<int:pedido_id>/', views.boleta, name='boleta'),
+    path('pago/', views.vista_pago, name='pago'),
+    path('ayuda/preguntas/', views.preguntas_frecuentes, name='preguntas'),
+    path('ayuda/envios/', views.envios, name='envios'),
 ]
 
 if settings.DEBUG:

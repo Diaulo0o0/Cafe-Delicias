@@ -1,4 +1,3 @@
-/* General */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f7f3ef;
@@ -7,7 +6,7 @@ body {
 
 /* Navbar */
 .navbar {
-    background-color: #6f4e37; 
+    background-color: #6f4e37;
 }
 
 .navbar-brand {
@@ -57,7 +56,7 @@ h1 {
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    height: 100% !important; 
+    height: 100% !important;
 }
 
 .card:hover {
@@ -65,13 +64,14 @@ h1 {
 }
 
 .card img {
-    height: 220px; 
+    height: 350px;
     object-fit: cover;
     border-radius: 12px 12px 0 0;
+    object-position: center;
 }
 
 .card-body {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -90,7 +90,7 @@ h1 {
     text-align: center;
     font-size: 0.95rem;
     color: #6d4c41;
-    flex-grow: 1; 
+    flex-grow: 1;
     margin-bottom: 15px;
 }
 
@@ -99,7 +99,7 @@ h1 {
     border: none;
     display: block;
     margin: 0 auto;
-    width: 80%; 
+    width: 80%;
 }
 
 .btn-primary:hover {
@@ -109,7 +109,7 @@ h1 {
 /* Footer */
 .footer{
     background-color: #6f4e37;
-    padding: 40px 0;   
+    padding: 40px 0;  
 }
 
 .footer-row{
@@ -184,7 +184,7 @@ h1 {
 
 /* Estilos para Inicio sesion */
 main.container {
-    background: #fff8f0; 
+    background: #fff8f0;
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -250,4 +250,60 @@ main.container p {
   font-weight: bold;
 }
 
+/* Barra de Filtros */
+.filter-bar {
+    background-color: #ffffff;
+    border-radius: 15px; /* Bordes redondeados modernos */
+    border: 1px solid #efebe9; /* Un borde sutil color café muy claro */
+}
 
+.filter-bar .form-control, 
+.filter-bar .form-select,
+.filter-bar .input-group-text {
+    background-color: #f7f3ef; /* Fondo crema suave para los inputs */
+    border: 1px solid #d7ccc8;
+    color: #4b3832;
+}
+
+.filter-bar .form-control:focus, 
+.filter-bar .form-select:focus {
+    box-shadow: none;
+    border-color: #6f4e37; /* Color café al hacer clic */
+}
+
+/* 1. Desplazamiento suave para toda la página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Ajuste para que el menú de arriba no tape el producto al bajar */
+[id^="producto-"] {
+    scroll-margin-top: 120px; /* Ajusta esto si tu barra de navegación es muy alta */
+}
+
+/* 3. Definimos la animación "resaltar" */
+@keyframes resaltar-producto {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid transparent;
+    }
+    50% {
+        transform: scale(1.05); /* Se agranda un poquito */
+        background-color: #fff3e0; /* Color crema/naranja suave de fondo */
+        box-shadow: 0 0 20px rgba(111, 78, 55, 0.5); /* Sombra color café brillante */
+        border: 1px solid #6f4e37; /* Borde café */
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #fff8f0; /* Vuelve a tu color original */
+        border: 1px solid transparent;
+    }
+}
+
+/* 4. Aplicamos la animación cuando el ID está activo en la URL */
+/* Esto se lee: "Cuando el div con id 'producto-X' sea el target, anima la tarjeta de adentro" */
+[id^="producto-"]:target .card {
+    animation: resaltar-producto 2s ease-in-out;
+}

@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Boleta #{{ pedido.id }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0e0e0; /* Fondo gris para resaltar el ticket */
+            font-family: 'Courier New', Courier, monospace; /* Fuente tipo ticket */
+        }
+        .ticket {
+            background: white;
+            width: 380px; /* Ancho típico de boleta */
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        /* Efecto de borde dentado */
+        .ticket::before, .ticket::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(135deg, transparent 50%, white 50%), linear-gradient(45deg, white 50%, transparent 50%);
+            background-size: 20px 20px;
+        }
+        .ticket::before { top: -10px; transform: rotate(180deg); }
+        .ticket::after { bottom: -10px; }
+
+        .dashed-line {
+            border-bottom: 2px dashed #4b3832;
+            margin: 15px 0;
+        }
+        .logo-text {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #6f4e37;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+        .total-row {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-print {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        @media print {
+            body { background: white; }
+            .ticket { box-shadow: none; margin: 0; width: 100%; }
+            .btn-print, .btn-home { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="ticket">
+    <div class="logo-text">CAFÉ DELICIAS</div>
+    <p class="text-center mb-0">El mejor sabor artesanal</p>
+    <p class="text-center small">Av. Siempre Viva 123, Santiago</p>
+    
+    <div class="dashed-line"></div>
+    
+    <div class="info-row">
+        <span><strong>Folio:</strong> #{{ pedido.id }}</span>
+        <span>{{ pedido.fecha|date:"d/m/Y" }}</span>
+    </div>
+    <div class="info-row">
+        <span><strong>Hora:</strong> {{ pedido.fecha|date:"H:i" }}</span>
+        <span>Cliente: {{ pedido.usuario.username }}</span>
+    </div>
+
+    <div class="dashed-line"></div>
+
+    <table class="table table-borderless table-sm mb-0">
+        <thead>
+            <tr>
+                <th scope="col">Cant.</th>
+                <th scope="col">Prod.</th>
+                <th scope="col" class="text-end">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detalle in pedido.detalles.all %}
+            <tr>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ detalle.producto.nombre }}</td>
+                <td class="text-end">${{ detalle.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="dashed-line"></div>
+
+    <div class="d-flex justify-content-between total-row">
+        <span>TOTAL:</span>
+        <span>${{ pedido.total }}</span>
+    </div>
+
+    <div class="mt-4 text-center small">
+        <p>¡Gracias por su preferencia!</p>
+        <p>www.cafedelicias.cl</p>
+    </div>
+
+    <button onclick="window.print()" class="btn btn-dark btn-print">🖨️ Imprimir Boleta</button>
+    <a href="{% url 'index' %}" class="btn btn-outline-secondary btn-home w-100 mt-2">Volver al Inicio</a>
+</div>
+
+</body>
+</html>
