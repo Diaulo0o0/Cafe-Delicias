@@ -276,9 +276,8 @@ html {
     scroll-behavior: smooth;
 }
 
-/* 2. Ajuste para que el menú de arriba no tape el producto al bajar */
 [id^="producto-"] {
-    scroll-margin-top: 120px; /* Ajusta esto si tu barra de navegación es muy alta */
+    scroll-margin-top: 120px; 
 }
 
 /* 3. Definimos la animación "resaltar" */
@@ -297,13 +296,12 @@ html {
     100% {
         transform: scale(1);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background-color: #fff8f0; /* Vuelve a tu color original */
+        background-color: #fff8f0; 
         border: 1px solid transparent;
     }
 }
 
 /* 4. Aplicamos la animación cuando el ID está activo en la URL */
-/* Esto se lee: "Cuando el div con id 'producto-X' sea el target, anima la tarjeta de adentro" */
 [id^="producto-"]:target .card {
     animation: resaltar-producto 2s ease-in-out;
 }
