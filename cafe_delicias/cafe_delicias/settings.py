@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'cafe_delicias.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'localhost',
+        'PORT': 5432,
+        'NAME': 'bd_cafedelicias',
+        'USER': 'postgres',
+        'PASSWORD': 'Maxi2003'
     }
 }
 
