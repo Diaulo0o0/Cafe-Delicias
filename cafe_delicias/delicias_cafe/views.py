@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from smtplib import SMTPException # Importar para manejar errores de correo
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import login as auth_login
+from django.core.mail import send_mail
 
 
 from .models import Producto, Pedido, DetallePedido
