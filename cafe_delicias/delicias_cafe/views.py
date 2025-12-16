@@ -230,10 +230,41 @@ def registro_view(request):
             messages.error(request, "El usuario ya existe")
             return redirect("registro")
 
+        # Crear el usuario
         user = User.objects.create_user(username=username, email=email, password=p1)
         user.save()
+
+        # --- 2. LÓGICA DE ENVÍO Y VALIDACIÓN DE CORREO ---
+        try:
+            subject = '¡Bienvenido a Café Delicias!'
+            message = f'Hola {username}, tu registro se ha realizado correctamente. Ya puedes comenzar a comprar tus cafés favoritos.'
+            
+            # El "Cartero" (Tu cuenta configurada en settings.py)
+            email_from = settings.EMAIL_HOST_USER 
+            
+            # El Destinatario (El correo que ingresó el usuario en el formulario)
+            recipient_list = [email, ] 
+
+            # fail_silently=False es CLAVE: hace que si falla, salte al "except"
+            send_mail(subject, message, email_from, recipient_list, fail_silently=False)
+            
+            # Si llega aquí, es porque el correo salió bien del servidor
+            messages.success(request, f"Cuenta creada exitosamente. Se envió un correo de confirmación a {email}")
+
+        except SMTPException as e:
+            # Aquí entra si hay error de conexión o el servidor rechaza el correo
+            print(f"Error SMTP: {e}") # Ver error en la consola negra
+            messages.warning(request, "Tu cuenta fue creada, pero no pudimos enviar el correo de confirmación. Verifica tu dirección.")
+
+        except Exception as e:
+            # Cualquier otro error
+            print(f"Error general: {e}")
+            messages.warning(request, "Cuenta creada, error enviando notificación.")
+        # --------------------------------------------------
+
         auth_login(request, user)
         return redirect("index")
+        
     return render(request, "cafe_cafe/registro.html")
 
 def vista_pago(request):
